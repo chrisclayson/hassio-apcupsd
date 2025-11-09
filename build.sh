@@ -1,15 +1,11 @@
-docker run --rm --privileged \
-    -v ~/.docker:/root/.docker \
-    homeassistant/amd64-builder \
+docker run \
+    --rm \
+    --privileged \
+    -v /var/run/docker.sock:/var/run/docker.sock:ro \
+    -v ./apcupsd:/apcupsd \
+    homeassistant/aarch64-builder \
     --all \
-    -r https://github.com/korylprince/hassio-apcupsd.git \
-    -b master \
-    -t apcupsd
-
-docker run --rm --privileged \
-    -v ~/.docker:/root/.docker \
-    homeassistant/amd64-builder \
-    --all \
-    -r https://github.com/korylprince/hassio-apcupsd.git \
-    -b master \
-    -t apcupsd_net
+    --no-cache \
+    --docker-user "${DOCKER_USER}" \
+    --docker-password "${DOCKER_PASSWORD}" \
+    -t /apcupsd

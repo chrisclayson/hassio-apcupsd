@@ -1,7 +1,8 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM alpine:latest
 
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
+
+RUN apk add --no-cache apcupsd bash jq curl openssh
 
 COPY run.sh /
 RUN chmod a+x /run.sh
@@ -13,10 +14,6 @@ RUN chmod a+x /sbin/poweroff
 RUN rm /sbin/reboot
 COPY hassio_reboot /sbin/reboot
 RUN chmod a+x /sbin/reboot
-
-RUN apk add --no-cache apcupsd=3.14.14-r1 jq curl openssh msmtp mailx
-
-RUN ln -sf /usr/bin/msmtp /usr/sbin/sendmail
 
 WORKDIR /data
 
