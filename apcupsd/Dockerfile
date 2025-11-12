@@ -1,8 +1,9 @@
-FROM alpine:latest
+ARG BUILD_FROM=ghcr.io/home-assistant/aarch64-base:latest
+FROM ${BUILD_FROM}
 
 ENV LANG=C.UTF-8
 
-RUN apk add --no-cache apcupsd bash jq curl openssh
+RUN apk add --no-cache apcupsd bash jq curl openssh yq
 
 COPY run.sh /
 RUN chmod a+x /run.sh

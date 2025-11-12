@@ -63,4 +63,4 @@ for script in "${VALID_SCRIPTS[@]}"; do
     fi
 done
 
-exec /sbin/apcupsd -b
+exec /sbin/apcupsd -b -d 10
