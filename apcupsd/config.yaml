@@ -1,13 +1,10 @@
 ---
 name: APC UPS Daemon
-version: "2.1"
+version: "2.2"
 slug: apcupsd
 description: View information from APC USB UPSs
 url: https://github.com/chrisclayson/hassio-apcupsd/tree/main/apcupsd
 startup: services
-ingress: true
-ingress_port: 0
-ingress_stream: true
 init: false
 arch:
   - aarch64
@@ -41,7 +38,7 @@ schema:
   name: str
   cable: str
   type: str
-  device: str
+  device: str?
   extra:
     - key: str
       val: str
